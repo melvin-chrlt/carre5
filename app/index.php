@@ -1,7 +1,8 @@
 <?php
 include_once "_head.php";
 include_once "_navbar.php";
-$connexion = false;
+require 'includes/connect.php';
+// $connexion = false;
 if ($connexion) {
     ?>
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">

@@ -42,3 +42,9 @@
 - Procédural pur
 - Alternative (fonctionnel)
 - connexion en PDO
+
+## Comment utiliser ce repository
+
+- Cloner le repository
+- Créer une base de données contenant une table user et une table product selon le schéma MLD ci-dessus
+- Créer un fichier dev.env.php dans le dossier app/includes/ contenant les constantes DATABASE, SERVER, USER,PASSWORD relatives à votre SGBD.
