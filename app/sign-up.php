@@ -25,18 +25,18 @@ include_once "_head.php";
                     </div>
 
                     <div class="card-body">
-                        <form role="form text-left">
+                        <form role="form text-left" action="sign-up_post.php" method="POST">
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Name" aria-label="Name"
-                                    aria-describedby="email-addon">
-                            </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Email" aria-label="Email"
-                                    aria-describedby="email-addon">
+                                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                    aria-describedby="email-addon" name="username">
                             </div>
                             <div class="mb-3">
                                 <input type="password" class="form-control" placeholder="Password" aria-label="Password"
-                                    aria-describedby="password-addon">
+                                    aria-describedby="password-addon" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Re-type your password"
+                                    aria-label="Confirm password" aria-describedby="password-addon" name="password2">
                             </div>
                             <div class="form-check form-check-info text-left">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
@@ -47,7 +47,7 @@ include_once "_head.php";
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                                <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                             </div>
                             <p class="text-sm mt-3 mb-0">Already have an account? <a href="sign-in.php"
                                     class="text-dark font-weight-bolder">Sign in</a></p>
