@@ -17,6 +17,8 @@ CREATE TABLE carrefive.product (
     dlc DATE
 );
 
+ALTER TABLE carrefive.user ADD UNIQUE(`username`);
+
 INSERT INTO carrefive.product (name,description,price,dlc) VALUES
 ('PANZANI Coquillettes', 'Des coquillettes panzani !', 0.76, '2025-11-09'),
 ('MAGNUM Classic x4', 'Boite de 4 magnums classic', 2.34, '2022-05-09'),

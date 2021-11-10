@@ -1,5 +1,29 @@
 <?php
 include_once "_head.php";
+
+$alert = false;
+
+if (isset($_GET["error"])) {
+    $alert = true;
+    if ($_GET['error'] == "missingInput") {
+        $type = "secondary";
+        $message = "Les deux champs sont requis";
+    }
+    if ($_GET['error'] == "usernameExists") {
+        $type = "secondary";
+        $message = "Ce nom d'utilisateur existe déja";
+    }
+    if ($_GET['error'] == "differentPasswords") {
+        $type = "warning";
+        $message = "Les mots de passe ne concordent pas";
+    }
+}
+
+if (isset($_GET['success'])) {
+    $alert = true;
+    $type = "success";
+    $message = "Votre inscription s'est bien passée !";
+}
 ?>
 
 <section class="min-vh-100 mb-8">
@@ -22,6 +46,7 @@ include_once "_head.php";
                 <div class="card z-index-0">
                     <div class="card-header text-center pt-4">
                         <h5>Register with</h5>
+                        <?php echo $alert ? "<div class='alert alert-{$type} mt-2'>{$message}</div>" : ''; ?>
                     </div>
 
                     <div class="card-body">
