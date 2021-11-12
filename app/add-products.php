@@ -5,6 +5,8 @@ require 'includes/config.php';
 include_once "_head.php";
 include_once "_navbar.php";
 
+$alert = false;
+
 if (isset($_GET["error"])) {
     $alert = true;
     if ($_GET['error'] == "missingInput") {
@@ -19,11 +21,19 @@ if (isset($_GET["error"])) {
         $type = "warning";
         $message = "Une erreur s'est produite, réessayer ultérieurement.";
     }
+    if ($_GET['error'] == "tooBig") {
+        $type = "warning";
+        $message = "L'image est trop lourde , elle doit être < 10Mo";
+    }
+    if ($_GET['error'] == "wrongFormat") {
+        $type = "warning";
+        $message = "L'image est au mauvais format : Les formats acceptés sont jpg,png,jpeg";
+    }
 }
 ?>
 
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
-    <form action="add-products_post.php" method="post" class="container">
+    <form action="add-products_post.php" method="post" class="container" enctype="multipart/form-data">
         <?php echo $alert ? "<div class='alert alert-{$type} mt-2'>{$message}</div>" : ''; ?>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nom du produit</label>
@@ -42,7 +52,7 @@ if (isset($_GET["error"])) {
         </div>
         <div class="mb-3">
             <label for="formFile" class="form-label">Image du produit</label>
-            <input class="form-control" type="file" id="formFile" name="image">
+            <input class="form-control" type="file" id="formFile" accept=".png,.jpg,.jpeg" name="image">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Date limite de consommation/d'usage optimal</label>

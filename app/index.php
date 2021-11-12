@@ -51,6 +51,8 @@ if ($connexion) {
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            ID#</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Nom</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -69,12 +71,18 @@ if ($connexion) {
                                     ?>
                                     <tr>
                                         <td>
+                                            <p class="text-xs font-weight-bold mb-0 text-center">
+                                                <?= $product['product_id'] ?></p>
+                                        </td>
+                                        <td>
+
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm"><?= $product['name'] ?></h6>
                                                 </div>
                                             </div>
                                         </td>
+
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"><?= $product['price'] ?>€</p>
                                         </td>
@@ -83,7 +91,7 @@ if ($connexion) {
                                                 class="text-secondary text-xs font-weight-bold"><?= $product['dlc'] ? date('d/m/Y', strtotime($product['dlc'])) : '' ?></span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a href="javascript:;"
+                                            <a href="product.php?id=<?= $product['product_id']; ?>"
                                                 class="text-secondary font-weight-bold text-xs text-primary mx-1"
                                                 data-toggle="tooltip" data-original-title="Show product">
                                                 Show
