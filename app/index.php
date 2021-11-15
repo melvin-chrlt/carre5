@@ -1,21 +1,21 @@
 <?php
 require 'includes/config.php';
 require 'includes/connect.php';
-include_once "_head.php";
-include_once "_navbar.php";
+include_once '_head.php';
+include_once '_navbar.php';
 $alert = false;
 
 if (isset($_GET['success'])) {
     $alert = true;
-    if($_GET['success'] == "addedProduct"){
-        $type = "success";
-        $message = "Votre produit a bien été ajouté";
+    if ('addedProduct' == $_GET['success']) {
+        $type = 'success';
+        $message = 'Votre produit a bien été ajouté';
     }
 }
-// $connexion = false;
-if ($connexion) {
-    include '_view-products.php';
-    ?>
+//* On utilise un user que l'on définit dans le config.php. Cette variable contiendra les informations de session ($_SESSION), de façon à ce que l'on puisse limiter l'accès un peu plus que ce que l'on a déja.
+
+if ($user) {
+    include '_view-products.php'; ?>
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
@@ -67,31 +67,32 @@ if ($connexion) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                        foreach($products as $product){
-                                    ?>
+                                        foreach ($products as $product) {
+                                            ?>
                                     <tr>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0 text-center">
-                                                <?= $product['product_id'] ?></p>
+                                                <?php echo $product['product_id']; ?></p>
                                         </td>
                                         <td>
 
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm"><?= $product['name'] ?></h6>
+                                                    <h6 class="mb-0 text-sm"><?php echo $product['name']; ?></h6>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0"><?= $product['price'] ?>€</p>
+                                            <p class="text-xs font-weight-bold mb-0"><?php echo $product['price']; ?>€
+                                            </p>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold"><?= $product['dlc'] ? date('d/m/Y', strtotime($product['dlc'])) : '' ?></span>
+                                                class="text-secondary text-xs font-weight-bold"><?php echo $product['dlc'] ? date('d/m/Y', strtotime($product['dlc'])) : ''; ?></span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a href="product.php?id=<?= $product['product_id']; ?>"
+                                            <a href="product.php?id=<?php echo $product['product_id']; ?>"
                                                 class="text-secondary font-weight-bold text-xs text-primary mx-1"
                                                 data-toggle="tooltip" data-original-title="Show product">
                                                 Show
@@ -108,8 +109,7 @@ if ($connexion) {
                                         </td>
                                     </tr>
                                     <?php
-                                        }
-                                    ?>
+                                        } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -201,13 +201,14 @@ if ($connexion) {
     </div>
 </main>
 
-<?php } else {?>
+<?php
+} else {?>
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
     <div class="container">
-        <button class="btn btn-danger">CONNECTE TOI MEC</button>
+        <a href="sign-in.php" class="btn btn-danger">CONNECTE TOI MEC</a>
     </div>
 </main>
 <?php }
 
-include_once "_footer.php";
+include_once '_footer.php';
 ?>

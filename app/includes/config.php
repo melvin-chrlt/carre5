@@ -7,7 +7,12 @@ if (isset($_GET['logout'])) {
     header('Location:index.php');
 }
 
-if (empty($_SESSION) && isset($auth)) {
-    header('Location:sign-in.php?auth');
-    exit();
+if (empty($_SESSION)) {
+    if (isset($auth)) {
+        header('Location:sign-in.php?auth');
+        exit();
+    }
+    $user = null;
+} else {
+    $user = $_SESSION['user'];
 }
