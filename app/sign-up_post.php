@@ -21,14 +21,14 @@ if (in_array('', $_POST)) {
 
 //* Il est possible d'utiliser un select (sans count) si vous utilisez la méthode fetchColumn() ensuite. Le temps d'exécution est légèrement plus élevé.
 //* $verifUsername = "SELECT * FROM user WHERE username = :username";
-$verifUsername = "SELECT COUNT(*) FROM user WHERE username = :username";
+$verifUsername = 'SELECT COUNT(*) FROM user WHERE username = :username';
 $reqVerifUsername = $connexion->prepare($verifUsername);
 $reqVerifUsername->bindValue(':username', $username, PDO::PARAM_STR);
 $reqVerifUsername->execute();
 
 // $pdo->fetch(); //* J'obtiens un array qui contient : un array indexé avec mes valeurs, et un array associatif avec mes valeurs, mais seulement pour la première ligne que renvoie ma BDD.
 
-// $pdo->fetchColumn(); //* J'obtiens un nombre qui quantifie le nombre de lignes qui correspondent à ma requête.
+// $pdo->fetchColumn(); //* J'obtiens la première colonne du premier résultat de notre requête.
 
 // $pdo->fetchAll(); //* J'obtiens un array qui contient : un array indexé avec mes valeurs, et un array associatif avec mes valeurs, mais cette fois pour tous les résultats de ma requête.
 
@@ -51,7 +51,7 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 
 //? Requête préparée d'insertion dans la BDD
 
-$insertUser = "INSERT INTO user (username,password) VALUES (:username,:password)";
+$insertUser = 'INSERT INTO user (username,password) VALUES (:username,:password)';
 $reqInsertUser = $connexion->prepare($insertUser);
 
 $reqInsertUser->bindValue(':username', $username, PDO::PARAM_STR);
@@ -64,7 +64,7 @@ if ($resultatInsertUser) {
     exit();
 }
 
-/**
+/*
  * ! Etapes logiques de l'inscription
  *
  *  TODO Vérification intro : vérifier que le formulaire est rempli ou que les champs nécessaires le soient.
