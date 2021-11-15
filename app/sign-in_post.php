@@ -19,18 +19,17 @@ if (empty($_POST['username']) || empty($_POST['password'])) {
 
 try {
     //? Requête préparée de récupération de l'utilisateur
-    //* Dans le cas d'un champ unique qui serait utilisable avec l'username ou l'email on écrirait la requête de cette façon.
-    // $verifUsername = "SELECT * FROM user WHERE username = :username OR email = :email";
-    $verifUsername = "SELECT * FROM user WHERE username = :username LIMIT 1";
+    //* Dans le cas d'un champ unique (ici username) qui serait utilisable avec l'username ou l'email on écrirait la requête de cette façon.
+    // $verifUsername = "SELECT * FROM user WHERE username = :username OR email = :username";
+    $verifUsername = 'SELECT * FROM user WHERE username = :username LIMIT 1';
     $reqVerifUsername = $connexion->prepare($verifUsername);
     $reqVerifUsername->bindValue(':username', $username, PDO::PARAM_STR);
     $reqVerifUsername->execute();
 
     $user = $reqVerifUsername->fetch();
-
 } catch (PDOException $e) {
     $connexion = null;
-    echo 'Erreur : ' . $e->getMessage();
+    echo 'Erreur : '.$e->getMessage();
 }
 
 if ($user) {
@@ -42,12 +41,12 @@ if ($user) {
         header('Location:sign-in.php?error=passwordNotMatch');
         exit();
     } else {
-        $_SESSION['user'] = $user["username"];
+        $_SESSION['user'] = $user['username'];
         header('Location:index.php');
     }
 }
 
-/**
+/*
  * ! Etapes logiques de la connexion :
  *
  * TODO : Vérif intro : formulaire rempli/champs nécessaires remplis
