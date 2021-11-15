@@ -12,8 +12,10 @@ try {
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $connexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $connexion = null;
-    echo 'Erreur : ' . $e->getMessage();
+    // $connexion = null;
+    // echo 'Erreur : ' . $e->getMessage();
+
+    echo $e->getMessage();
 }
 
 //? Pour les utilisateurs de MAMP, utilisez la chaine ci-dessous.

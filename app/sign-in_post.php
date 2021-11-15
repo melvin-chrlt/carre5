@@ -3,10 +3,6 @@
 require 'includes/config.php';
 require 'includes/connect.php';
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-
 //? Je vérifie que mon formulaire est rempli
 if (empty($_POST['username']) || empty($_POST['password'])) {
     header('Location:sign-in.php?error=missingInput');
@@ -33,10 +29,6 @@ try {
 }
 
 if ($user) {
-    echo '<pre>';
-    print_r($user);
-    echo '</pre>';
-
     if (!password_verify($password, $user['password'])) {
         header('Location:sign-in.php?error=passwordNotMatch');
         exit();
