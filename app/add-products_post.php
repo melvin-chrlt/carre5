@@ -81,10 +81,8 @@ if ($image) {
     mkdir(dirname($imagePath));
 
     if (!move_uploaded_file($image['tmp_name'], $imagePath)) {
-        if (!in_array($check_ext, $valid_ext)) {
             header('Location:add-products.php?error=unknownError');
             exit();
-        }
     }
 }
 
