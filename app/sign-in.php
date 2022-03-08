@@ -1,5 +1,4 @@
 <?php
-require 'includes/config.php';
 include '_head.php';
 ?>
 <div class="container position-sticky z-index-sticky top-0">

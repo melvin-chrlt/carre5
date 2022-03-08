@@ -1,21 +1,8 @@
 <?php
-require 'includes/config.php';
-require 'includes/connect.php';
+
 include_once '_head.php';
 include_once '_navbar.php';
-$alert = false;
-
-if (isset($_GET['success'])) {
-    $alert = true;
-    if ('addedProduct' == $_GET['success']) {
-        $type = 'success';
-        $message = 'Votre produit a bien été ajouté';
-    }
-}
-//* On utilise un user que l'on définit dans le config.php. Cette variable contiendra les informations de session ($_SESSION), de façon à ce que l'on puisse limiter l'accès un peu plus que ce que l'on a déja.
-
-if ($user) {
-    include '_view-products.php'; ?>
+?>
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
@@ -32,13 +19,11 @@ if ($user) {
                         <input type="text" class="form-control" placeholder="Type here...">
                     </div>
                 </div>
-
             </div>
         </div>
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-        <?php echo $alert ? "<div class='alert alert-{$type} mt-2'>{$message}</div>" : ''; ?>
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -66,33 +51,29 @@ if ($user) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        foreach ($products as $product) {
-                                            ?>
                                     <tr>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0 text-center">
-                                                <?php echo $product['product_id']; ?></p>
+                                                1015
                                         </td>
                                         <td>
 
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm"><?php echo $product['name']; ?></h6>
+                                                    <h6 class="mb-0 text-sm">Mayonnaise</h6>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0"><?php echo $product['price']; ?>€
+                                            <p class="text-xs font-weight-bold mb-0">1.45€
                                             </p>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold"><?php echo $product['dlc'] ? date('d/m/Y', strtotime($product['dlc'])) : ''; ?></span>
+                                            <span class="text-secondary text-xs font-weight-bold">22/12/2022</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a href="product.php?id=<?php echo $product['product_id']; ?>"
+                                            <a href="product.php?id=1015"
                                                 class="text-secondary font-weight-bold text-xs text-primary mx-1"
                                                 data-toggle="tooltip" data-original-title="Show product">
                                                 Show
@@ -108,8 +89,6 @@ if ($user) {
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php
-                                        } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -200,15 +179,7 @@ if ($user) {
         <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 333px;"></div>
     </div>
 </main>
-
 <?php
-} else {?>
-<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
-    <div class="container">
-        <a href="sign-in.php" class="btn btn-danger">CONNECTE TOI MEC</a>
-    </div>
-</main>
-<?php }
 
 include_once '_footer.php';
 ?>

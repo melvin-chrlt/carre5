@@ -1,29 +1,5 @@
 <?php
-include_once "_head.php";
-
-$alert = false;
-
-if (isset($_GET["error"])) {
-    $alert = true;
-    if ($_GET['error'] == "missingInput") {
-        $type = "secondary";
-        $message = "Les deux champs sont requis";
-    }
-    if ($_GET['error'] == "usernameExists") {
-        $type = "secondary";
-        $message = "Ce nom d'utilisateur existe déja";
-    }
-    if ($_GET['error'] == "differentPasswords") {
-        $type = "warning";
-        $message = "Les mots de passe ne concordent pas";
-    }
-}
-
-if (isset($_GET['success'])) {
-    $alert = true;
-    $type = "success";
-    $message = "Votre inscription s'est bien passée !";
-}
+include_once '_head.php';
 ?>
 
 <section class="min-vh-100 mb-8">
@@ -84,5 +60,5 @@ if (isset($_GET['success'])) {
     </div>
 </section>
 <?php
-include_once "_footer.php";
+include_once '_footer.php';
 ?>
