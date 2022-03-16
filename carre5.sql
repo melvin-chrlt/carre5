@@ -17,6 +17,9 @@ CREATE TABLE carrefive.product (
     dlc DATE
 );
 
+-- ALTER TABLE product ADD author_id INT NOT_NULL AUTO_INCREMENT FOREIGN_KEY;
+-- SELECT id FROM user AS us INNER JOIN product AS pro ON us.id = pro.author_id; 
+
 ALTER TABLE carrefive.user ADD UNIQUE(`username`);
 
 INSERT INTO carrefive.product (name,description,price,dlc) VALUES
